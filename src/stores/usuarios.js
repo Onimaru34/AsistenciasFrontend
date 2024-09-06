@@ -7,7 +7,7 @@ export const useUsuariosStore = defineStore("usuario", () => {
     let xtoken = ref("");
     const listarUsuarios = async () => {
         try {
-          let r = await axios.get("http://localhost:5037/api/Usuarios/listar");
+          let r = await axios.get(`${process.env.VUE_APP_API_URL}/api/Usuarios/listar`);
           console.log(r);
           return r;
         } catch (error) {
@@ -19,7 +19,7 @@ export const useUsuariosStore = defineStore("usuario", () => {
       const editarUsuario = async (id,ema,nom) => {
         console.log(id);
         try {
-          let r = await axios.put(`http://localhost:5037/api/Usuarios/editar/${id}`,
+          let r = await axios.put(`${process.env.VUE_APP_API_URL}/api/Usuarios/editar/${id}`,
           { email:ema,nombre:nom}
           );
           console.log(r);
@@ -45,7 +45,7 @@ export const useUsuariosStore = defineStore("usuario", () => {
 
       const login = async (email, password)=>{
         try {
-            let r = await axios.post("http://localhost:5037/api/Usuarios/login", {
+            let r = await axios.post(`${process.env.VUE_APP_API_URL}/api/Usuarios/login`, {
               email: email,
               password: password,
             });
@@ -66,7 +66,7 @@ export const useUsuariosStore = defineStore("usuario", () => {
       };
       const guardarFicha = async (ema, nom) => {
         try {
-          let r = await axios.post("http://localhost:5037/api/Usuarios/insertarUsuario", {
+          let r = await axios.post(`${process.env.VUE_APP_API_URL}/api/Usuarios/insertarUsuario`, {
             email:ema,
             nombre:nom
           });
@@ -95,7 +95,7 @@ export const useUsuariosStore = defineStore("usuario", () => {
   
         try {
           let r = await axios.put(
-            `http://localhost:5037/api/Usuarios/activarDesactivar/${id}`
+            `${process.env.VUE_APP_API_URL}/api/Usuarios/activarDesactivar/${id}`
           );
           console.log("Respuesta del servidor:", r);
       
