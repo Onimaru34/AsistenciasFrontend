@@ -9,7 +9,7 @@ export const useFichaStore = defineStore("ficha", () => {
   let token = ref("");
   const listarFichas = async () => {
     try {
-      let r = await axios.get("http://localhost:5037/api/Fichas/listar");
+      let r = await axios.get(`${process.env.VUE_APP_API_URL}/api/Fichas/listar`);
       console.log(r);
       return r;
     } catch (error) {
@@ -21,7 +21,7 @@ export const useFichaStore = defineStore("ficha", () => {
     console.log("ID de la ficha:", id);
     try {
       let r = await axios.put(
-        `http://localhost:5037/api/Fichas/activarDesactivar/${id}`
+        `${process.env.VUE_APP_API_URL}/api/Fichas/activarDesactivar/${id}`
       );
       console.log("Respuesta del servidor:", r);
   
@@ -68,7 +68,7 @@ export const useFichaStore = defineStore("ficha", () => {
 
   const guardarFicha = async (cod, nom) => {
     try {
-      let r = await axios.post("http://localhost:5037/api/Fichas/insertar", {
+      let r = await axios.post(`${process.env.VUE_APP_API_URL}/api/Fichas/insertar`, {
         codigo: cod,
         nombre: nom,
       });
@@ -97,7 +97,7 @@ export const useFichaStore = defineStore("ficha", () => {
     console.log(id);
     try {
       let r = await axios.put(
-        `http://localhost:5037/api/Fichas/editar/${id}`,
+        `${process.env.VUE_APP_API_URL}/api/Fichas/editar/${id}`,
         { codigo: cod, nombre: nom }
       );
       console.log(r);
@@ -122,7 +122,7 @@ export const useFichaStore = defineStore("ficha", () => {
 
   const eliminar = async (id) =>{
     try {
-      let r = await axios.delete(`http://localhost:5037/api/Fichas/eliminar/${id}`);
+      let r = await axios.delete(`${process.env.VUE_APP_API_URL}/api/Fichas/eliminar/${id}`);
       console.log(r);
       Notify.create({
         color: "positive",
