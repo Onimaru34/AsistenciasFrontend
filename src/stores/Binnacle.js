@@ -10,7 +10,7 @@ export const useBitacoraStore = defineStore("bitacora", () => {
   // Actualizar estado
   const actualizarEstado = async (id, estado) => {  // Cambiar aquí para aceptar 'estado'
     try {
-      let r = await axios.put(`http://localhost:5037/api/Bitacoras/estado/${id}`, { estado });  // Enviar el estado en el cuerpo de la solicitud
+      let r = await axios.put(`${process.env.VUE_APP_API_URL}/api/Bitacoras/estado/${id}`, { estado });  // Enviar el estado en el cuerpo de la solicitud
       console.log(r);
       return r.data;  // Retornar la respuesta actualizada
     } catch (error) {
@@ -26,7 +26,7 @@ export const useBitacoraStore = defineStore("bitacora", () => {
   // Función para listar bitácoras en un rango de fechas
   const listarBitacorasXFecha = async (inicio, fin) => {
     try {
-      let r = await axios.get(`http://localhost:5037/api/Bitacoras/bitacora/${inicio}/${fin}`);
+      let r = await axios.get(`${process.env.VUE_APP_API_URL}/api/Bitacoras/bitacora/${inicio}/${fin}`);
       console.log(r);
       return r.data; // Retornamos solo los datos relevantes
     } catch (error) {
@@ -42,7 +42,7 @@ export const useBitacoraStore = defineStore("bitacora", () => {
   // Función para listar bitácoras por IdAprendis
   const listarXIdAprendis = async (IdAprendis, fechaInicio, fechaFin) => {
     try {
-      let r = await axios.get(`http://localhost:5037/api/Bitacoras/listarBitacora/${IdAprendis}/${fechaInicio}/${fechaFin}`);
+      let r = await axios.get(`${process.env.VUE_APP_API_URL}/api/Bitacoras/listarBitacora/${IdAprendis}/${fechaInicio}/${fechaFin}`);
       console.log(r);
       return r.data;
     } catch (error) {
@@ -58,8 +58,7 @@ export const useBitacoraStore = defineStore("bitacora", () => {
   // Función para listar bitácoras por IdFicha
   const listarXIdFicha = async (IdFicha, fechaInicio, fechaFin) => {
     try {
-      let r = await axios.put(`
-        http://localhost:5037/api/Bitacoras/ListarbitacoraIdFicha/${IdFicha}/${fechaInicio}/${fechaFin}`
+      let r = await axios.put(`${process.env.VUE_APP_API_URL}/api/Bitacoras/ListarbitacoraIdFicha/${IdFicha}/${fechaInicio}/${fechaFin}`
       );
       console.log(r);
       return r.data;
